@@ -7,10 +7,7 @@ import {
 
 
 export const initialState = {
-    name: "Dingus", 
-    age: 300, 
-    height: "1.8cm", 
-    id: 0,
+    smurfs: [],
     isLoading: false,
     error: null
 }
