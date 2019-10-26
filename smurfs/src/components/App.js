@@ -1,10 +1,18 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+
+import { connect } from'react-redux';
+import { getSmurf } from './actions/smurf'
+import SmurfList from './Smurf/SmurfList'
+import SmurfForm from './Smurf/NewSmurfForm'
 
 import { FormContext } from './contexts/FormContext'
 
 import "./App.css";
-class App extends Component {
-  render() {
+  function App(props) {
+  useEffect(() => {
+    props.getSmurf();
+  }, [])
+
     return (
       <div className="App">
         <FormContext.Provider>
@@ -16,6 +24,24 @@ class App extends Component {
       </div>
     );
   }
+
+
+function mapStateToProps(state){
+  return {
+    name: state.name,
+    age: state.age,
+    height: state.height,
+    id: state.id,
+    isLoading: state.isLoading,
+    error: state.error
+  };
 }
 
-export default App;
+const mapDispatchToProps = {
+  getSmurf
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)
+  (App);
