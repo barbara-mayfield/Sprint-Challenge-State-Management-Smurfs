@@ -20,11 +20,7 @@ import "./App.css";
 
           <div className="smurf">
             <h3>List of Smurfs</h3>
-            <SmurfList 
-                      name={props.name}
-                      age={props.age}
-                      height={props.height} 
-            />
+            <SmurfList smurfs={props.smurfs}/>
             <NewSmurfForm />
           </div>
       </div>

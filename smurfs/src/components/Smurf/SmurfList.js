@@ -1,12 +1,13 @@
 import React from 'react';
 
+import Smurf from './Smurf'
 
-const SmurfList = (props) => {
+const SmurfList = ({ smurfs }) => {
     return (
         <div>
-            <p>Name: {props.name}</p>
-            <p>Age: {props.age}</p>
-            <p>Height: {props.height}</p>
+            {smurfs.map(smurf => (
+                <Smurf />
+            ))}
         </div>
     )
 }
