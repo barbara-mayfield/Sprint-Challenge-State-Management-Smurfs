@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
-
 import { connect } from'react-redux';
-import { getSmurf } from './actions/smurf'
-import SmurfList from './Smurf/SmurfList'
+
+import { getSmurfs } from './actions/index'
+import Smurf from './Smurf/Smurf'
 import NewSmurfForm from './Smurf/NewSmurfForm'
 
 import "./App.css";
-  function App(props) {
+  function App({ getSmurfs, smurfs, error, isLoading }) {
   useEffect(() => {
-    props.getSmurf();
-  }, [getSmurf])
+    getSmurfs();
+  }, [])
+
+  console.log(getSmurfs)
 
     return (
       <div className="App">
@@ -17,18 +19,16 @@ import "./App.css";
           <div>Welcome to your state management version of Smurfs!</div>
           <div>Start inside of your `src/index.js` file!</div>
           <div>Have fun!</div>
-
-          <div className="smurf">
-            <h3>List of Smurfs</h3>
-            <SmurfList smurfs={props.smurfs}/>
+            {smurfs.map((smurf, index) => (
+            <Smurf key={index} smurf={smurf} />
+            ))}
             <NewSmurfForm />
-          </div>
       </div>
     );
   }
 
 
-function mapStateToProps(state){
+const mapStateToProps = state => {
   return {
     smurfs: state.smurfs,
     isLoading: state.isLoading,
@@ -36,11 +36,7 @@ function mapStateToProps(state){
   };
 }
 
-const mapDispatchToProps = {
-  getSmurf
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps)
+  { getSmurfs })
   (App);

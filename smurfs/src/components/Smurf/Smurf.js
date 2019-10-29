@@ -1,13 +1,12 @@
 import React from 'react';
 
-const Smurf = (props) => {
-  console.log(props, "<- Smurf Props")
+const Smurf = ({ smurf }) => {
   return (
-  <div>
-  <p>Name: {props.name}</p>
-  <p>Age: {props.age}</p>
-  <p>Height: {props.height}</p>
-  </div>
+        <div>
+            <p>Name: {smurf.name}</p>
+            <p>Age: {smurf.age}</p>
+            <p>Height: {smurf.height}</p>
+        </div>
   )
 };
 

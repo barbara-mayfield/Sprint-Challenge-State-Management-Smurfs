@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { newSmurf } from '../actions/smurf'
+import { newSmurf } from '../actions/index'
 
  function NewSmurfForm(props) {
      console.log(props, "<- New Smurf Props")
-    const [smurf, addSmurf] = useState({
+    const [smurf, setSmurf] = useState({
         name: "",
         age: "",
         height: ""
@@ -12,13 +12,13 @@ import { newSmurf } from '../actions/smurf'
 
     const handleChange = e => {
         e.preventDefault()
-        addSmurf({...smurf, [e.target.name]: e.target.value})
+        setSmurf({...smurf, [e.target.name]: e.target.value})
     }
     
     const handleSubmit = e => {
         e.preventDefault()
         props.newSmurf(smurf);
-        addSmurf({
+        setSmurf({
             name: "",
             age: "",
             height: ""
@@ -55,4 +55,7 @@ import { newSmurf } from '../actions/smurf'
     )
 }
 
-export default connect(null)(NewSmurfForm);
+export default connect(
+    null,
+    { newSmurf }
+)(NewSmurfForm);
